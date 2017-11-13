@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -111,3 +112,25 @@ include/
 local/
 pip-selfcheck.json
 
+=======
+.env
+/.tox/
+*.pyc
+*#
+*~
+*.swp
+#*
+local_settings.py
+local_test_settings.py
+slackbot_settings.py
+slackbot_test_settings.py
+/build
+/dist
+/*.egg-info
+.cache
+/.vscode/
+/bin/
+/lib/
+/include
+pip-selfcheck.json
+>>>>>>> 2ac3c077f067b68ccfce9e257a42df69d47e5a7b
