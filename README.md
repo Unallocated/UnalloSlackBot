@@ -63,7 +63,7 @@ DEFAULT_REPLY = "Sorry but I didn't understand you"
 ```
 
 ##### Configure the docs answer
-The `message` attribute passed to [your custom plugins](#create-plugins) has an special function `message.docs_reply()` that will parse all the plugins available and return the Docs in each of them.
+The `message` attribute passed to [your custom plugins](#create-plugins) has a special function `message.docs_reply()` that will parse all the plugins available and return the Docs in each of them.
 
 ##### Send all tracebacks directly to a channel, private channel, or user
 Set `ERRORS_TO` in `slackbot_settings.py` to the desired recipient. It can be any channel, private channel, or user. Note that the bot must already be in the channel. If a user is specified, ensure that they have sent at least one DM to the bot first.
@@ -128,7 +128,7 @@ def hi(message):
 
 @respond_to('I love you')
 def love(message):
-    message.reply('I love you too!')
+    message.reply('I know.')
 
 @listen_to('Can someone help me?')
 def help(message):
