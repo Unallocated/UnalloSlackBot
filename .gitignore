@@ -101,9 +101,6 @@ ENV/
 # mypy
 .mypy_cache/
 
-# pycharm
-.idea/
-
 # Secrets
 config.ini
 test.py
