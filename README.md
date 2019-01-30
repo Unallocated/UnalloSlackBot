@@ -1,7 +1,5 @@
 [![PyPI](https://badge.fury.io/py/slackbot.svg)](https://pypi.python.org/pypi/slackbot) [![Build Status](https://secure.travis-ci.org/lins05/slackbot.svg?branch=master)](http://travis-ci.org/lins05/slackbot)
 
-The UnalloSlackBot framework was cloned from [lins05/slackbot](https://github.com/lins05/slackbot):
-
 A chat bot for [Slack](https://slack.com) inspired by [llimllib/limbo](https://github.com/llimllib/limbo) and [will](https://github.com/skoczen/will).
 
 ## Features
@@ -10,7 +8,7 @@ A chat bot for [Slack](https://slack.com) inspired by [llimllib/limbo](https://g
 * Simple plugins mechanism
 * Messages can be handled concurrently
 * Automatically reconnect to slack when connection is lost
-* Python3 Support
+* Python2 + Python3 Support
 * [Full-fledged functional tests](tests/functional/test_functional.py)
 
 ## Installation
@@ -56,14 +54,17 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
 ##### Configure the default answer
+
 Add a DEFAULT_REPLY to `slackbot_settings.py`:
 ```python
 DEFAULT_REPLY = "Sorry but I didn't understand you"
 ```
 
 ##### Configure the docs answer
-The `message` attribute passed to [your custom plugins](#create-plugins) has a special function `message.docs_reply()` that will parse all the plugins available and return the Docs in each of them.
+
+The `message` attribute passed to [your custom plugins](#create-plugins) has an special function `message.docs_reply()` that will parse all the plugins available and return the Docs in each of them.
 
 ##### Send all tracebacks directly to a channel, private channel, or user
 Set `ERRORS_TO` in `slackbot_settings.py` to the desired recipient. It can be any channel, private channel, or user. Note that the bot must already be in the channel. If a user is specified, ensure that they have sent at least one DM to the bot first.
@@ -75,6 +76,7 @@ ERRORS_TO = 'username'
 ```
 
 ##### Configure the plugins
+
 Add [your plugin modules](#create-plugins) to a `PLUGINS` list in `slackbot_settings.py`:
 
 ```python
@@ -106,6 +108,7 @@ def github():
     }]
     message.send_webapi('', json.dumps(attachments))
 ```
+
 ## Create Plugins
 
 A chat bot is meaningless unless you can extend/customize it to fit your own use cases.
@@ -128,7 +131,7 @@ def hi(message):
 
 @respond_to('I love you')
 def love(message):
-    message.reply('I know.')
+    message.reply('I love you too!')
 
 @listen_to('Can someone help me?')
 def help(message):
@@ -175,13 +178,13 @@ PLUGINS = [
 
 ## The `@default_reply` decorator
 
-*added in slackbot 0.4.1*
+*Added in slackbot 0.4.1*
 
 Besides specifying `DEFAULT_REPLY` in `slackbot_settings.py`, you can also decorate a function with the `@default_reply` decorator to make it the default reply handler, which is more handy.
 
 ```python
 @default_reply
-def my_default_handler(messsage):
+def my_default_handler(message):
     message.reply('...')
 ```
 
@@ -189,7 +192,7 @@ Here is another variant of the decorator:
 
 ```python
 @default_reply(r'hello.*)')
-def my_default_handler(messsage):
+def my_default_handler(message):
     message.reply('...')
 ```
 

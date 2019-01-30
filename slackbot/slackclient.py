@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 class SlackClient(object):
-    def __init__(self, token, bot_icon=None, bot_emoji=None, connect=True):
+    def __init__(self, token, timeout=None, bot_icon=None, bot_emoji=None, connect=True):
         self.token = token
         self.bot_icon = bot_icon
         self.bot_emoji = bot_emoji
@@ -31,7 +31,10 @@ class SlackClient(object):
         self.users = {}
         self.channels = {}
         self.connected = False
-        self.webapi = slacker.Slacker(self.token)
+        if timeout is None:
+            self.webapi = slacker.Slacker(self.token)
+        else:
+            self.webapi = slacker.Slacker(self.token, timeout=timeout)
 
         if connect:
             self.rtm_connect()
@@ -150,6 +153,9 @@ class SlackClient(object):
     def get_channel(self, channel_id):
         return Channel(self, self.channels[channel_id])
 
+    def open_dm_channel(self, user_id):
+        return self.webapi.im.open(user_id).body["channel"]["id"]
+
     def find_channel_by_name(self, channel_name):
         for channel_id, channel in iteritems(self.channels):
             try:
@@ -158,6 +164,9 @@ class SlackClient(object):
                 name = self.users[channel['user']]['name']
             if name == channel_name:
                 return channel_id
+
+    def get_user(self, user_id):
+        return self.users.get(user_id)
 
     def find_user_by_name(self, username):
         for userid, user in iteritems(self.users):
