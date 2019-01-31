@@ -4,16 +4,17 @@ from slackbot.bot import respond_to
 import urllib3
 import re
 
-url = 'https://www.unallocatedspace.org/status'
-http = urllib3.PoolManager()
-r = http.request('GET', url)
-
+def checkstatus():
+    url = 'https://www.unallocatedspace.org/status'
+    http = urllib3.PoolManager()
+    r = http.request('GET', url)
+    return r.data
 
 @respond_to('!status$', re.IGNORECASE)
 def status_reply(message):
-    message.reply(r.data)
+    message.reply(checkstatus())
 
 @listen_to('!status$', re.IGNORECASE)
 def status(message):
-    message.send(r.data)
+    message.send(checkstatus())
 
