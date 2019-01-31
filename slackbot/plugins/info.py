@@ -7,18 +7,17 @@ import re
 import random
 import string
 
-url = 'https://www.unallocatedspace.org/status'
-http = urllib3.PoolManager()
+WEBURL = 'https://www.unallocatedspace.org/status'
+HTTPS = urllib3.PoolManager()
+ANSWER = HTTPS.request('GET', WEBURL)
+STATUS = ANSWER.data.decode("utf-8") 
 
 WALL = "https://www.unallocatedspace.org/thewall/thewall.jpg?" + ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
 
-r = http.request('GET', url)
-
-
 @respond_to('!info$', re.IGNORECASE)
 def status_reply(message):
-    message.reply(r.data + b'\n' + WALL)
+    message.reply(STATUS + '\n' + WALL)
 
 @listen_to('!info$', re.IGNORECASE)
 def status(message):
-    message.send(r.data + b'\n' + WALL)
+    message.send(STATUS + '\n' + WALL)
