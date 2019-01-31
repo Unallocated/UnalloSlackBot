@@ -27,13 +27,14 @@ ANSWERS = [
 	"Very doubtful",
        ] 
 
-@respond_to('!8ball$', re.IGNORECASE)
+
+@respond_to('!8ball', re.IGNORECASE)
 def hello_reply(message):
     message.reply(str(random.choice(ANSWERS)))
 
 
-@listen_to('!8ball$', re.IGNORECASE)
+@listen_to('!8ball', re.IGNORECASE)
 def hello_send(message):
-    message.sendstr(random.choice(ANSWERS)))
+    message.send(str(random.choice(ANSWERS)))
 
 
