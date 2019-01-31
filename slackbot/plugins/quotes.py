@@ -5,8 +5,8 @@ from slackbot.bot import listen_to
 import random
 
 QUOTES = [
-	"quote1",
-	"quote2",
+	"Dai dunno! -- Usako",
+	"...",
 	"quote3",
 	"quote4",
 	"quote5",
@@ -14,13 +14,20 @@ QUOTES = [
        ] 
 
 
-@respond_to('!quotes$', re.IGNORECASE)
+@respond_to('!quote$', re.IGNORECASE)
 def hello_reply(message):
     message.reply(str(random.choice(QUOTES)))
 
 
-@listen_to('!quotes$', re.IGNORECASE)
+@listen_to('!quote$', re.IGNORECASE)
 def hello_send(message):
     message.send(str(random.choice(QUOTES)))
 
+@respond_to('!randomquote$', re.IGNORECASE)
+def hello_reply(message):
+    message.reply(str(random.choice(QUOTES)))
 
+
+@listen_to('!randomquote$', re.IGNORECASE)
+def hello_send(message):
+    message.send(str(random.choice(QUOTES)))
