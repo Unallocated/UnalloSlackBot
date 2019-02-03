@@ -23,12 +23,12 @@ DEFAULT_REPLY = ''
 for item in DEFAULT:
         DEFAULT_REPLY+=item
 
-@respond_to('!help$', re.IGNORECASE)
+@respond_to('!help', re.IGNORECASE)
 def hello_reply(message):
     message.reply(DEFAULT_REPLY)
 
 
-@listen_to('!help$', re.IGNORECASE)
+@listen_to('!help', re.IGNORECASE)
 def hello_send(message):
     message.send(DEFAULT_REPLY)
 
