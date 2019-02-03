@@ -43,4 +43,15 @@
 - Note: ./slackbot_settings.py is the GENERIC error message for all unknown commands per the README.md file in the root directory
 
 
+# Notes on Docker
+- To build this in docker run:
+```
+$ sudo docker build . -t unallobot
+```
+
+- To run in docker after building do:
+```sh
+$ sudo docker run -d --restart unless-stopped -e SLACKBOT_API_TOKEN=MY_SECRET_TOKEN unallobot
+```
+
 
